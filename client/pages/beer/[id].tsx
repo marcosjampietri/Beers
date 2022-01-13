@@ -17,7 +17,7 @@ const BeerPage = () => {
     if (!beer) {
         return (
             <Page>
-                <h1>Coudn't Find this beer</h1>
+                <h1>Coudn&apos;t Find this beer</h1>
             </Page>
         );
     }
@@ -38,9 +38,9 @@ const BeerPage = () => {
                             <Foods>
                                 <div>Goes Well With:</div>
                                 {beer.food_pairing.map((food, index) => (
-                                    <div>
+                                    <div key={index}>
                                         <GiKnifeFork />
-                                        <p key={index}>{food}</p>
+                                        <p>{food}</p>
                                     </div>
                                 ))}
                             </Foods>
