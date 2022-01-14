@@ -9,7 +9,7 @@ const Home: NextPage = () => {
     return (
         <div data-test="comp-home">
             <Head>
-                <title>HTE FABULOUS BEERS</title>
+                <title>THE FABULOUS BEERS</title>
                 <meta name="description" content="Generated for the goods" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>

@@ -27,6 +27,7 @@ const Bar = styled.nav`
     width: 100vw;
     height: 80px;
     text-align: center;
+    z-index: 2;
 
     display: flex;
     justify-content: center;

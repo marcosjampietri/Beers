@@ -106,9 +106,10 @@ const Info = styled.div`
     padding: 10px;
 
     h2 {
-        height: 35px;
+        height: 7vw;
+        max-height: 45px;
         font-weight: 600;
-        font-size: clamp(1em, 1.5vw, 1.5em);
+        font-size: clamp(1em, 1.5vw, 1.3em);
         color: hsla(0, 0%, 30%, 1);
     }
     h4 {

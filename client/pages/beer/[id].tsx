@@ -58,6 +58,7 @@ export default BeerPage;
 
 const Page = styled.div`
     margin: 20px auto;
+    height: 100%;
     padding-bottom: 30px;
     border-bottom: 1px solid hsla(0, 0%, 50%, 0.1);
 `;
@@ -79,8 +80,7 @@ const Description = styled.div`
 const FlexBox = styled.div`
     flex: 1 1 200px;
 
-    height: 50vw;
-    max-height: 300px;
+    height: 100%;
 
     margin: 10px 20px;
 `;
@@ -123,7 +123,7 @@ const Text = styled(FlexBox)`
 const Image = styled(FlexBox)`
     img {
         width: 100%;
-        height: 100%;
+        height: 350px;
         object-fit: cover;
         object-position: center center;
         border: 2px solid hsla(0, 0%, 0%, 0.1);
