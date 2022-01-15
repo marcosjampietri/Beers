@@ -26,24 +26,32 @@ const Cards = () => {
 
             <Table data-test="comp-cards">
                 {beersAll.map((beer: beer, index: number) => (
-                    <NextLink href={`/beer/${beer.id}`} passHref key={index}>
-                        <BeerCard>
+                    <BeerCard key={index}>
+                        <Front className="front">
                             <Image src={beer.image_url} />
                             <Info>
                                 <h2>{beer.name.toUpperCase()}</h2>
-
-                                <Star>
+                                {/*                                 <Star>
                                     {[...Array(5)].map((_, index) => (
                                         <FiStar key={index} />
                                     ))}
-                                </Star>
+                                </Star> */}
                                 <h4>{beer.tagline}</h4>
 
                                 <p>VOL.{beer.abv}%</p>
-                                <p>{beer.description}</p>
                             </Info>
-                        </BeerCard>
-                    </NextLink>
+                        </Front>
+                        <Back className="back">
+                            <NextLink href={`/beer/${beer.id}`} passHref>
+                                <>
+                                    <h4>{beer.name}</h4>
+                                    <div>
+                                        <p>{beer.description}</p>
+                                    </div>
+                                </>
+                            </NextLink>
+                        </Back>
+                    </BeerCard>
                 ))}
             </Table>
         </BeersSection>
@@ -81,21 +89,74 @@ const Table = styled.div`
 `;
 
 const BeerCard = styled.div`
-    margin: 30px 2vw;
+    position: relative;
+    width: 300px;
+    max-width: 450px;
+    height: 300px;
+    margin: 1vw 20px;
     flex-grow: 1;
     flex-shrink: 1;
-    flex-basis: 200px;
-    max-width: 300px;
+    flex-basis: 220px;
 
-    border: 1px solid hsla(0, 0%, 50%, 0.2);
+    perspective: 1500px;
 
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px hsla(0, 0%, 0%, 0.2);
-    cursor: pointer;
+    :hover {
+        .front {
+            transform: rotateY(-180deg);
+        }
+        .back {
+            backface-visibility: hidden;
+            transform: rotateY(0deg);
+        }
+    }
 `;
+
+const Face = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+
+    border-radius: 5px;
+    border: 1px solid hsla(0, 0%, 20%, 0.1);
+    transition: all 0.5s ease-in-out;
+`;
+
+const Front = styled(Face)`
+    background: hsla(350, 0%, 50%, 1);
+    transform: rotateY(0deg);
+    div h4 {
+        padding: 20px 0px;
+        text-align: center;
+
+        color: hsla(350, 80%, 100%, 1);
+    }
+`;
+
+const Back = styled(Face)`
+    background: hsla(350, 80%, 50%, 1);
+    transform: rotateY(180deg);
+    padding: 20px;
+
+    h4 {
+        margin: 20px 0px;
+        text-align: center;
+        color: hsla(350, 0%, 100%, 1);
+    }
+    p {
+        font-size: 16px;
+        letter-spacing: 1px;
+        text-align: justify;
+        color: black;
+    }
+`;
+
 const Image = styled.img`
     width: 100%;
-    height: 300px;
+    height: 50%;
     margin: 0px auto;
 
     object-fit: cover;
