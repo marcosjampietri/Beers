@@ -24,8 +24,8 @@ services:
   #     - MONGO_INITDB_ROOT_PASSWORD=${DATABASE_PASSWORD}
   nextjs:
     image: "marcosjampietri/beer-next:0.1"
-    links:
-      - mongo
+    # links:
+    #   - mongo
     ports:
       - "3000:3000"
 
