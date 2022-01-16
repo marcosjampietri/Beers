@@ -92,7 +92,7 @@ const BeerCard = styled.div`
     width: 300px;
     max-width: 450px;
     height: 300px;
-    margin: 1vw 20px;
+    margin: 50px 20px;
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 220px;
@@ -119,10 +119,12 @@ const Face = styled.div`
     backface-visibility: hidden;
 
     border-radius: 5px;
-    border: 1px solid hsla(0, 0%, 100%, 1);
-    border: 1px solid hsla(0, 0%, 80%, 1);
+    // border: 1px solid hsla(0, 0%, 80%, 1);
     box-shadow: 2px 2px 20px hsla(0, 0%, 0%, 0.2);
     transition: all 0.5s ease-in-out;
+
+    display: flex;
+    justify-content: center;
 `;
 
 const Front = styled(Face)`
@@ -130,6 +132,7 @@ const Front = styled(Face)`
 `;
 
 const Back = styled(Face)`
+    flex-direction: column;
     background: hsla(350, 80%, 100%, 1);
     transform: rotateY(180deg);
     padding: 10px;
@@ -137,43 +140,56 @@ const Back = styled(Face)`
     h4 {
         margin: 20px 0px;
         text-align: center;
-
+        font-weight: 400;
         color: hsla(350, 0%, 0%, 1);
     }
     p {
         width: 100%;
         height: 10em;
-        font-size: 16px;
-        letter-spacing: 1px;
+        font-size: 12px;
+        letter-spacing: initial;
         text-align: justify;
         text-overflow: ellipsis;
         color: black;
         overflow: hidden;
     }
+
+    a {
+        width: 100%;
+        border: 1px solid grey;
+    }
 `;
 
 const Image = styled.img`
-    width: 100%;
-    height: 50%;
+    position: absolute;
+    right: -10px;
+    bottom: 0px;
+    height: 120%;
+    max-width: 50%;
     margin: 0px auto;
 
-    object-fit: cover;
-    object-position: center center;
     border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
 `;
 const Info = styled.div`
     padding: 10px;
+    padding-right: 45%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
 
     h2 {
         max-height: 45px;
         font-weight: 600;
-        font-size: clamp(1em, 1.5vw, 1.3em);
+        font-size: clamp(1em, 1.2vw, 1.5em);
         color: hsla(0, 0%, 30%, 1);
     }
     h4 {
-        min-height: 2em;
+        min-height: 6em;
         font-weight: 600;
-        font-size: clamp(1em, 1.5vw, 1.5em);
+        font-size: clamp(0.8em, 1vw, 1.3em);
         color: hsla(0, 0%, 50%, 1);
     }
 

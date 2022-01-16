@@ -5,7 +5,7 @@ pipeline {
     agent any
     
     environment {
-        NEW_VERSION = "0.21"
+        NEW_VERSION = "0.22"
         ANSIBLE_SERVER = "206.189.125.50"
     }
     

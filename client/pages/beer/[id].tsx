@@ -27,7 +27,7 @@ const BeerPage = () => {
         beer && (
             <Page>
                 <Margin>
-                    <Description>
+                    <Main>
                         <Image>
                             <img src={beer.image_url} />
                         </Image>
@@ -35,23 +35,24 @@ const BeerPage = () => {
                             <Name>
                                 <h2>{beer.name.toUpperCase()}</h2>
                             </Name>
+                            <h4>VOL.: {beer.abv}%</h4>
                             <h4>{beer.description}</h4>
-                            <Foods>
-                                <div>Goes Well With:</div>
-                                {beer.food_pairing.map((food, index) => (
-                                    <div key={index}>
-                                        <GiKnifeFork />
-                                        <p>{food}</p>
-                                    </div>
-                                ))}
-                            </Foods>
 
                             <h3>ONLY £ {beer.id}</h3>
                         </Text>
-                    </Description>
+                    </Main>
+                    <Foods>
+                        <div>Goes Well With:</div>
+                        {beer.food_pairing.map((food, index) => (
+                            <div key={index}>
+                                <GiKnifeFork />
+                                <p>{food}</p>
+                            </div>
+                        ))}
+                    </Foods>
                     <NextLink href="/">
                         <a>
-                            <div>BACK TO HOME</div>
+                            <Back>BACK TO HOME</Back>
                         </a>
                     </NextLink>
                 </Margin>
@@ -75,7 +76,7 @@ const Margin = styled.div`
     max-width: 1000px;
 `;
 
-const Description = styled.div`
+const Main = styled.div`
     margin: 20px auto;
 
     display: flex;
@@ -83,15 +84,7 @@ const Description = styled.div`
     flex-wrap: wrap;
 `;
 
-const FlexBox = styled.div`
-    flex: 1 1 200px;
-
-    height: 100%;
-
-    margin: 10px 20px;
-`;
-
-const Text = styled(FlexBox)`
+const Text = styled.div`
     max-width: 300px;
 
     h4,
@@ -104,8 +97,9 @@ const Text = styled(FlexBox)`
 
     h4 {
         padding: 6px;
-        font-weight: 600;
+        font-weight: 400;
         font-size: 0.8em;
+        line-height: 2em;
         color: hsla(0, 0%, 40%, 1);
     }
     h5 {
@@ -126,30 +120,15 @@ const Text = styled(FlexBox)`
     }
 `;
 
-const Image = styled(FlexBox)`
+const Image = styled.div`
+    padding: 20px;
+    overflow: hidden;
     img {
-        width: 100%;
-        height: 350px;
-        object-fit: cover;
-        object-position: center center;
-        border: 2px solid hsla(0, 0%, 0%, 0.1);
+        height: 70vw;
+        max-height: 400px;
     }
 `;
 
-const Add = styled.div`
-    button {
-        width: 150px;
-        height: 50px;
-        margin: 20px 0px 20px -10px;
-
-        background-color: hsla(280, 90%, 25%, 1);
-        border: 1px solid hsla(0, 0%, 100%, 1);
-        border-radius: 50px;
-        color: white;
-        font-size: 12px;
-        font-weight: 600;
-    }
-`;
 const Name = styled.div`
     position: relative;
     height: 56px;
@@ -171,6 +150,8 @@ const Name = styled.div`
 const Foods = styled.div`
     border: 1px solid grey;
     padding: 10px;
+    margin: 0px auto;
+    max-width: 400px;
 
     div {
         margin: 6px;
@@ -185,4 +166,16 @@ const Foods = styled.div`
     p {
         margin: 0px;
     }
+`;
+
+const Back = styled.div`
+    height: 55px;
+    margin: 10px;
+    padding: 20px;
+
+    font-size: 12px;
+
+    cursor: pointer;
+    box-shadow: 2px 2px 10px hsla(0, 0%, 0%, 0.1);
+    text-align: center;
 `;
