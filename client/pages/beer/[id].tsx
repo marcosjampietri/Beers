@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import NextLink from "next/link";
 
 import { useTypedSelector, AppState } from "../../store/_rootReducer";
 import { beer } from "../../types/index";
@@ -48,6 +49,11 @@ const BeerPage = () => {
                             <h3>ONLY £ {beer.id}</h3>
                         </Text>
                     </Description>
+                    <NextLink href="/">
+                        <a>
+                            <div>BACK TO HOME</div>
+                        </a>
+                    </NextLink>
                 </Margin>
             </Page>
         )

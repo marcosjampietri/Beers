@@ -42,13 +42,12 @@ const Cards = () => {
                             </Info>
                         </Front>
                         <Back className="back">
-                            <NextLink href={`/beer/${beer.id}`} passHref>
-                                <>
-                                    <h4>{beer.name}</h4>
-                                    <div>
-                                        <p>{beer.description}</p>
-                                    </div>
-                                </>
+                            <h4>{beer.name}</h4>
+                            <p>{beer.description}...</p>
+                            <NextLink href={`/beer/${beer.id}`}>
+                                <a>
+                                    <h4>READ MORE</h4>
+                                </a>
                             </NextLink>
                         </Back>
                     </BeerCard>
@@ -115,42 +114,41 @@ const Face = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
 
     border-radius: 5px;
-    border: 1px solid hsla(0, 0%, 20%, 0.1);
+    border: 1px solid hsla(0, 0%, 100%, 1);
+    border: 1px solid hsla(0, 0%, 80%, 1);
+    box-shadow: 2px 2px 20px hsla(0, 0%, 0%, 0.2);
     transition: all 0.5s ease-in-out;
 `;
 
 const Front = styled(Face)`
-    background: hsla(350, 0%, 50%, 1);
     transform: rotateY(0deg);
-    div h4 {
-        padding: 20px 0px;
-        text-align: center;
-
-        color: hsla(350, 80%, 100%, 1);
-    }
 `;
 
 const Back = styled(Face)`
-    background: hsla(350, 80%, 50%, 1);
+    background: hsla(350, 80%, 100%, 1);
     transform: rotateY(180deg);
-    padding: 20px;
+    padding: 10px;
 
     h4 {
         margin: 20px 0px;
         text-align: center;
-        color: hsla(350, 0%, 100%, 1);
+
+        color: hsla(350, 0%, 0%, 1);
     }
     p {
+        width: 100%;
+        height: 10em;
         font-size: 16px;
         letter-spacing: 1px;
         text-align: justify;
+        text-overflow: ellipsis;
         color: black;
+        overflow: hidden;
     }
 `;
 
@@ -167,7 +165,6 @@ const Info = styled.div`
     padding: 10px;
 
     h2 {
-        height: 7vw;
         max-height: 45px;
         font-weight: 600;
         font-size: clamp(1em, 1.5vw, 1.3em);

@@ -3,11 +3,11 @@ version: "3"
 services:
   nginx:
     restart: always
-    image: "marcosjampietri/beer-nginx:0.2"
+    image: "marcosjampietri/beer-nginx:0.21"
     ports:
       - "5150:80"
   # api:
-  #   image: "marcosjampietri/beer-api:0.2"
+  #   image: "marcosjampietri/beer-api:0.21"
   #   links:
   #     - mongo
   #   ports:
@@ -23,7 +23,7 @@ services:
   #     - MONGO_INITDB_ROOT_USERNAME=${DATABASE_USERNAME}
   #     - MONGO_INITDB_ROOT_PASSWORD=${DATABASE_PASSWORD}
   nextjs:
-    image: "marcosjampietri/beer-next:0.2"
+    image: "marcosjampietri/beer-next:0.21"
     # links:
     #   - mongo
     ports:
