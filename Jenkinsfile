@@ -5,7 +5,7 @@ pipeline {
     agent any
     
     environment {
-        NEW_VERSION = "0.1"
+        NEW_VERSION = "0.2"
         ANSIBLE_SERVER = "206.189.125.50"
     }
     
@@ -135,7 +135,7 @@ pipeline {
                     sshagent(['Marcos-ec2-22']) {
                        sh "scp -o StrictHostKeyChecking=no app-build.sh ${ec2Instance}:/home/ec2-user"
                        sh "scp -o StrictHostKeyChecking=no docker-compose.yaml ${ec2Instance}:/home/ec2-user"
-                       sh "scp -o StrictHostKeyChecking=no ${ENV_FILE} ${ec2Instance}:/home/ec2-user"
+
                        sh "ssh -o StrictHostKeyChecking=no ${ec2Instance} ${shellCmd}"
                    }
                 }
