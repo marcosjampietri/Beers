@@ -28,16 +28,17 @@ const Cards = () => {
                 {beersAll.map((beer: beer, index: number) => (
                     <BeerCard key={index}>
                         <Front className="front">
-                            <Image src={beer.image_url} />
+                            <Image>
+                                <img src={beer.image_url} />
+                            </Image>
                             <Info>
                                 <h2>{beer.name.toUpperCase()}</h2>
-                                {/*                                 <Star>
+                                <h4>{beer.tagline}</h4>
+                                <Star>
                                     {[...Array(5)].map((_, index) => (
                                         <FiStar key={index} />
                                     ))}
-                                </Star> */}
-                                <h4>{beer.tagline}</h4>
-
+                                </Star>
                                 <p>VOL.{beer.abv}%</p>
                             </Info>
                         </Front>
@@ -67,7 +68,7 @@ const BeersSection = styled.section`
 const Title = styled.h1`
     width: 100%;
     max-width: 500px;
-    margin: 0px auto 50px;
+    margin: 20px auto 50px;
     padding: 20px;
     text-align: center;
     font-weight: 200;
@@ -89,13 +90,13 @@ const Table = styled.div`
 
 const BeerCard = styled.div`
     position: relative;
-    width: 300px;
+    width: 100%;
     max-width: 450px;
     height: 300px;
-    margin: 50px 20px;
+    margin: 50px 30px;
     flex-grow: 1;
     flex-shrink: 1;
-    flex-basis: 220px;
+    flex-basis: 300px;
 
     perspective: 1500px;
 
@@ -119,7 +120,6 @@ const Face = styled.div`
     backface-visibility: hidden;
 
     border-radius: 5px;
-    // border: 1px solid hsla(0, 0%, 80%, 1);
     box-shadow: 2px 2px 20px hsla(0, 0%, 0%, 0.2);
     transition: all 0.5s ease-in-out;
 
@@ -145,9 +145,11 @@ const Back = styled(Face)`
     }
     p {
         width: 100%;
-        height: 10em;
+        padding: 0px 10px;
+        height: 10.5em;
         font-size: 12px;
         letter-spacing: initial;
+        line-height: 1.5em;
         text-align: justify;
         text-overflow: ellipsis;
         color: black;
@@ -156,19 +158,30 @@ const Back = styled(Face)`
 
     a {
         width: 100%;
-        border: 1px solid grey;
+        border: 2px solid hsla(40, 50%, 40%, 0.3);
+        border-radius: 5px;
+        h4 {
+            color: hsla(40, 50%, 40%, 1);
+        }
     }
 `;
 
-const Image = styled.img`
+const Image = styled.div`
     position: absolute;
-    right: -10px;
+    max-width: 150px;
+    width: 50%;
+    right: -50px;
     bottom: 0px;
     height: 120%;
-    max-width: 50%;
-    margin: 0px auto;
 
-    border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
+    overflow: hidden;
+
+    pointer-events: none;
+
+    img {
+        height: 100%;
+    }
+    filter: drop-shadow(2px 2px 10px hsla(240, 0%, 0%, 0.5));
 `;
 const Info = styled.div`
     padding: 10px;
@@ -182,23 +195,23 @@ const Info = styled.div`
 
     h2 {
         max-height: 45px;
-        font-weight: 600;
+        font-weight: 800;
         font-size: clamp(1em, 1.2vw, 1.5em);
         color: hsla(0, 0%, 30%, 1);
     }
     h4 {
         min-height: 6em;
-        font-weight: 600;
-        font-size: clamp(0.8em, 1vw, 1.3em);
-        color: hsla(0, 0%, 50%, 1);
+        font-weight: 200;
+        font-size: clamp(1em, 1vw, 1.3em);
+        color: hsla(0, 0%, 20%, 1);
     }
 
     p {
         font-style: italic;
         font-size: 10px;
-        font-weight: 400;
+        font-weight: 600;
         letter-spacing: initial;
-        color: hsla(0, 0%, 30%, 1);
+        color: hsla(0, 0%, 20%, 1);
         text-align: justify;
     }
 `;
@@ -209,7 +222,7 @@ const Star = styled.div`
     margin: 10px 0px 0px 0px;
 
     svg {
-        fill: hsla(35, 100%, 50%, 1);
+        fill: hsla(35, 100%, 30%, 1);
         stroke: none;
         font-size: 1.3em;
     }

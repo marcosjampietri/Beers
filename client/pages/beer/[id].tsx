@@ -4,6 +4,7 @@ import styled from "styled-components";
 import NextLink from "next/link";
 
 import { useTypedSelector, AppState } from "../../store/_rootReducer";
+import { filterByABVAction } from "../../store/beers/beersActions";
 import { beer } from "../../types/index";
 import { GiKnifeFork } from "react-icons/gi";
 
@@ -35,14 +36,15 @@ const BeerPage = () => {
                             <Name>
                                 <h2>{beer.name.toUpperCase()}</h2>
                             </Name>
-                            <h4>VOL.: {beer.abv}%</h4>
+                            <h5>VOL.: {beer.abv}%</h5>
+
                             <h4>{beer.description}</h4>
 
                             <h3>ONLY £ {beer.id}</h3>
                         </Text>
                     </Main>
                     <Foods>
-                        <div>Goes Well With:</div>
+                        <h3>Goes Well With:</h3>
                         {beer.food_pairing.map((food, index) => (
                             <div key={index}>
                                 <GiKnifeFork />
@@ -51,7 +53,11 @@ const BeerPage = () => {
                         ))}
                     </Foods>
                     <NextLink href="/">
-                        <a>
+                        <a
+                            onClick={() => {
+                                dispatch(filterByABVAction("0"));
+                            }}
+                        >
                             <Back>BACK TO HOME</Back>
                         </a>
                     </NextLink>
@@ -78,6 +84,7 @@ const Margin = styled.div`
 
 const Main = styled.div`
     margin: 20px auto;
+    padding: 0px 10px;
 
     display: flex;
     justify-content: center;
@@ -95,34 +102,28 @@ const Text = styled.div`
         etter-spacing: 0.05em;
     }
 
+    h5 {
+        font-weight: 400;
+        padding: 26px 0px;
+    }
+
     h4 {
         padding: 6px;
+        margin-bottom: 20px;
         font-weight: 400;
         font-size: 0.8em;
         line-height: 2em;
         color: hsla(0, 0%, 40%, 1);
     }
-    h5 {
-        padding: 6px;
-        margin-bottom: 10px;
-        font-weight: 200;
-        font-size: 0.8em;
-        color: hsla(0, 0%, 40%, 1);
-    }
-    h6 {
-        margin: 0px 0px;
-        padding: 16px 0px;
-        margin-bottom: 10px;
-        font-weight: 200;
-        font-size: 0.8em;
-        color: hsla(0, 0%, 40%, 1);
-        font-style: italic;
-    }
 `;
 
 const Image = styled.div`
-    padding: 20px;
+    padding: 22px 50px;
+    margin-bottom: 20px;
     overflow: hidden;
+
+    filter: drop-shadow(2px -2px 10px hsla(240, 0%, 0%, 0.5));
+
     img {
         height: 70vw;
         max-height: 400px;
@@ -131,7 +132,7 @@ const Image = styled.div`
 
 const Name = styled.div`
     position: relative;
-    height: 56px;
+    height: 80px;
 
     h2 {
         font-size: 26px;
@@ -142,19 +143,28 @@ const Name = styled.div`
         content: "";
         position: absolute;
         bottom: 0px;
-        width: 100px;
-        height: 4px;
-        background-color: hsla(280, 90%, 25%, 1);
+        max-width: 180px;
+        width: 100%;
+        height: 3px;
+        background-color: hsla(280, 80%, 20%, 1);
     }
 `;
 const Foods = styled.div`
-    border: 1px solid grey;
-    padding: 10px;
-    margin: 0px auto;
     max-width: 400px;
+    padding: 20px;
+    margin: 30px auto;
+
+    outline: 1px solid hsla(0, 0%, 50%, 0.3);
+    outline-offset: -10px;
+
+    h3 {
+        font-weight: 400;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
 
     div {
-        margin: 6px;
+        margin: 16px 0px;
         display: flex;
 
         svg {
@@ -169,13 +179,13 @@ const Foods = styled.div`
 `;
 
 const Back = styled.div`
-    height: 55px;
+    height: 70px;
     margin: 10px;
-    padding: 20px;
+    padding: 30px;
 
     font-size: 12px;
 
     cursor: pointer;
-    box-shadow: 2px 2px 10px hsla(0, 0%, 0%, 0.1);
+    box-shadow: 2px 2px 10px hsla(0, 0%, 0%, 0.31);
     text-align: center;
 `;
